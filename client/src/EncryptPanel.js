@@ -19,12 +19,10 @@ const EncryptPanel = () => {
         msg,
         secretKey,
       });
-      console.log(newToken.data)
       setToken(newToken.data);
       setMsg("");
       setSecretKey("");
     } catch (error) {
-      console.log(error);
     }
   };
   // render
