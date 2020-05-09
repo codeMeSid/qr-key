@@ -53,7 +53,7 @@ const DecryptPanel = ({
   return (
     <React.Fragment>
       <QrcodeBox token={id} />
-      <Paper style={{ width: 250, marginBottom: 10 }}>
+      <Paper style={{ width: 260, marginBottom: 10 }}>
         <TextField
           style={{ width: "100%", padding: 5 }}
           type={"password"}
@@ -62,7 +62,7 @@ const DecryptPanel = ({
           onChange={decodeMessage}
         />
       </Paper>
-      <Paper style={{ width: 250, marginBottom: 5 }}>
+      <Paper style={{ width: 260, marginBottom: 5 }}>
         <TextareaAutosize
           rowsMin={5}
           rowsMax={6}
