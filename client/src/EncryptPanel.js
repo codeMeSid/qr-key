@@ -2,8 +2,10 @@ import React from "react";
 import QrcodeBox from "./QrcodeBox";
 import { TextField, TextareaAutosize, Paper, Button } from "@material-ui/core";
 import axios from "axios";
+import svgToPngConverter from "save-svg-as-png";
 
 const EncryptPanel = () => {
+  const svgDoc = document.getElementsByTagName("svg");
   // states
   const [msg, setMsg] = React.useState("");
   const [secretKey, setSecretKey] = React.useState("");
@@ -22,8 +24,7 @@ const EncryptPanel = () => {
       setToken(newToken.data);
       setMsg("");
       setSecretKey("");
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   // render
   return (
@@ -68,6 +69,16 @@ const EncryptPanel = () => {
         color={"secondary"}
         variant={"outlined"}
         disabled={token.length === 0}
+        onClick={async () => {
+          const qrcode = svgDoc.item(0);
+          console.log({ svgToPngConverter });
+          const qrImage = await svgToPngConverter.saveSvgAsPng(
+            qrcode,
+            "si.png",
+            { scale: 10, backgroundColor: "white", encoderOptions: 5 }
+          );
+          console.log({ qrImage });
+        }}
       >
         download
       </Button>
