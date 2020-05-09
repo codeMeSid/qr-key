@@ -24,11 +24,21 @@ app.post("/api/sign", (req, res) => {
   } = req;
   const keyA = jwt.sign(msg, secretKey);
   const keyB = jwt.sign(msg, "admin");
-  const keyCombo = keyA + "+" + keyB;
-  const token = jwt.sign(keyCombo, "I_AM_BATMAN");
+  const token = keyA + "+" + keyB;
   const tokenId = uuid.v4().split("-")[uuid.v4().split("-").length - 1];
   tracy[tokenId] = { token, createdAt: Date.now().valueOf() };
   res.json(tokenId);
+});
+
+app.get("/api/sign/:id", (req, res) => {
+  const { id } = req.params;
+  if (tracy[id]) {
+    res.json(tracy[id].token);
+  } else {
+    res
+      .status(404)
+      .json("You can't fool me, mate!!! This is not your secret to tell.");
+  }
 });
 
 app.get("*", (_, res) => {

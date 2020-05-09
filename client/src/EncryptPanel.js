@@ -15,12 +15,11 @@ const EncryptPanel = () => {
         (process.env.NODE_ENV === "development"
           ? "http://127.0.0.1:5000"
           : "") + "/api/sign";
-      console.log(url);
       const newToken = await axios.post(url, {
         msg,
         secretKey,
       });
-      console.log(newToken.data);
+      console.log(newToken.data)
       setToken(newToken.data);
       setMsg("");
       setSecretKey("");
