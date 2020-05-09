@@ -32,6 +32,7 @@ app.post("/api/sign", (req, res) => {
 
 app.get("/api/sign/:id", (req, res) => {
   const { id } = req.params;
+  console.log(tracy);
   if (tracy[id]) {
     res.json(tracy[id].token);
   } else {
