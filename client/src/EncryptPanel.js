@@ -30,7 +30,7 @@ const EncryptPanel = () => {
   return (
     <React.Fragment>
       <QrcodeBox token={token} />
-      <Paper style={{ width: 250, marginBottom: 10 }}>
+      <Paper style={{ width: 260, marginBottom: 10 }}>
         <TextField
           style={{ width: "100%", padding: 5 }}
           type={"password"}
@@ -42,8 +42,9 @@ const EncryptPanel = () => {
           }}
         />
       </Paper>
-      <Paper style={{ width: 250, marginBottom: 5 }}>
+      <Paper style={{ width: 260, marginBottom: 5 }}>
         <TextareaAutosize
+          id="textarea"
           rowsMin={5}
           rowsMax={6}
           style={{ width: "100%", padding: 5 }}
@@ -56,7 +57,7 @@ const EncryptPanel = () => {
         />
       </Paper>
       <Button
-        style={{ width: 250, marginBottom: 5 }}
+        style={{ width: 260, marginBottom: 5 }}
         color={"primary"}
         variant={"outlined"}
         disabled={msg.length === 0 || secretKey.length === 0}
@@ -65,19 +66,17 @@ const EncryptPanel = () => {
         create qr-code
       </Button>
       <Button
-        style={{ width: 250 }}
+        style={{ width: 260 }}
         color={"secondary"}
         variant={"outlined"}
         disabled={token.length === 0}
-        onClick={async () => {
+        onClick={() => {
           const qrcode = svgDoc.item(0);
-          console.log({ svgToPngConverter });
-          const qrImage = await svgToPngConverter.saveSvgAsPng(
-            qrcode,
-            "si.png",
-            { scale: 10, backgroundColor: "white", encoderOptions: 5 }
-          );
-          console.log({ qrImage });
+          svgToPngConverter.saveSvgAsPng(qrcode, "si.png", {
+            scale: 10,
+            backgroundColor: "#eee",
+            encoderOptions: 5,
+          });
         }}
       >
         download
