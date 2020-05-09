@@ -26,8 +26,8 @@ app.post("/api/sign", (req, res) => {
   const keyB = jwt.sign(msg, "admin");
   const keyCombo = keyA + "+" + keyB;
   const token = jwt.sign(keyCombo, "I_AM_BATMAN");
-  const tokenId = uuid.v4().split("-")[2];
-  tracy[tokenId] = token;
+  const tokenId = uuid.v4().split("-")[3];
+  tracy[tokenId] = { token, createdAt: Date.now().valueOf() };
   console.log(tracy);
   res.json(tokenId);
 });
